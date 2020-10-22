@@ -2,7 +2,7 @@
     "name": "vblog",
     "version": "1.0.0",
     "description": "A Vue.js project",
-    "author": "辣子鸡 <30425217+GitHub-Laziji@users.noreply.github.com>",
+    "author": "Terry <30425217+Name-Terry@users.noreply.github.com>",
     "private": true,
     "scripts": {
         "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",

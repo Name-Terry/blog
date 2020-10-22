@@ -11,7 +11,7 @@
                         </el-carousel-item>
                     </el-carousel>
                     <el-steps :active="deploy.active" align-center style="margin-top: 20px;" :process-status="deploy.status">
-                        <el-step title="克隆项目" description="https://github.com/GitHub-Laziji/GitHub-Laziji.github.io"></el-step>
+                        <el-step title="克隆项目" description="https://github.com/Name-Terry/Name-Terry.github.io"></el-step>
                         <el-step title="修改配置" description="将 /static/configuration.json 中的 githubUsername  改为自己的"></el-step>
                         <el-step title="查看效果" description="https://用户名.github.io 就是你的博客了"></el-step>
                     </el-steps>
