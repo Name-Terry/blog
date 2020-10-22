@@ -3,7 +3,7 @@ import UserApi from '@/api/user'
 import store from '../index'
 import Vue from 'vue'
 
-const TOKEN_KEY = "TOKEN_KEY"
+const TOKEN_KEY = 'TOKEN_KEY'
 const token = {
     state: {
         token: Cookie.getAttribute(TOKEN_KEY)
@@ -14,7 +14,7 @@ const token = {
             state.token = value
             Cookie.setAttribute(TOKEN_KEY, value, 30)
         },
-        REMOVE_TOKEN: (state) => {
+        REMOVE_TOKEN: state => {
             state.token = null
             Cookie.remove(TOKEN_KEY)
         }
@@ -22,7 +22,7 @@ const token = {
 
     actions: {
         Authentication({ commit }, accessToken) {
-            UserApi.verifyToken(accessToken).then((response) => {
+            UserApi.verifyToken(accessToken).then(response => {
                 let result = response.data
                 let githubUsername = store.state.configuration.githubUsername
                 if (githubUsername == result['login']) {
@@ -52,7 +52,7 @@ const token = {
                 message: 'Token取消绑定',
                 type: 'info'
             })
-        },
+        }
     }
 }
 

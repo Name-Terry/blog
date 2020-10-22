@@ -8,7 +8,7 @@
 
 ## Demo
 
-[https://github-laziji.github.io][1]
+[https://Name-Terry.github.io][1]
 
 
 ## Plugin
@@ -25,7 +25,7 @@
 
 ## Use Setup
 
-Clone ```https://github.com/GitHub-Laziji/GitHub-Laziji.github.io ```
+Clone ```https://github.com/Name-Terry/Name-Terry.github.io ```
 
 
 ## Develop
@@ -46,9 +46,9 @@ Code licensed under the [Mozilla](LICENSE).
 ------
 
 
-Author *Laziji*
+Author *Terry*
 
 
 
-  [1]: https://github-laziji.github.io
-  [2]: https://github.com/GitHub-Laziji/GitHub-Laziji.github.io
+  [1]: https://Name-Terry.github.io
+  [2]: https://github.com/Name-Terry/Name-Terry.github.io

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import store from '../store/index'
+// import store from '../store/index'
 import Router from 'vue-router'
 import Error404 from '@/views/error/Error404'
 import Layout from '@/views/layout/Layout'
@@ -24,8 +24,6 @@ import MobileProjectMain from '@/mobile_views/project/Main'
 import MobileProjectDetails from '@/mobile_views/project/Details'
 import MobileSelfMain from '@/mobile_views/self/Main'
 
-
-
 Vue.use(Router)
 
 export const constantRouterMap = [
@@ -35,7 +33,7 @@ export const constantRouterMap = [
         redirect: '/user/new/main',
         component: Layout,
         meta: {
-            type: "user",
+            type: 'user',
             icon: 'el-icon-star-off',
             title: '最新动态'
         },
@@ -52,7 +50,7 @@ export const constantRouterMap = [
         redirect: '/user/social/main',
         component: Layout,
         meta: {
-            type: "user",
+            type: 'user',
             icon: 'el-icon-mobile-phone',
             title: '社交圈'
         },
@@ -74,7 +72,7 @@ export const constantRouterMap = [
         redirect: '/user/blog/main',
         component: Layout,
         meta: {
-            type: "user",
+            type: 'user',
             icon: 'el-icon-edit-outline',
             title: '博客列表'
         },
@@ -106,7 +104,7 @@ export const constantRouterMap = [
         redirect: '/user/project/main',
         component: Layout,
         meta: {
-            type: "user",
+            type: 'user',
             icon: 'el-icon-service',
             title: '开源项目'
         },
@@ -123,47 +121,47 @@ export const constantRouterMap = [
             }
         ]
     },
-    {
-        path: '/user/helper',
-        redirect: '/user/helper/main',
-        component: Layout,
-        meta: {
-            type: "user",
-            icon: 'el-icon-printer',
-            title: '使用帮助',
-            mini: true
-        },
-        children: [
-            {
-                path: 'main',
-                component: HelperMain,
-                meta: { title: '使用帮助' }
-            }
-        ]
-    },
-    {
-        path: '/user/readme',
-        redirect: '/user/readme/main',
-        component: Layout,
-        meta: {
-            type: "user",
-            icon: 'el-icon-document',
-            title: 'README.md'
-        },
-        children: [
-            {
-                path: 'main',
-                component: ReadmeMain,
-                meta: { title: 'README.md' }
-            }
-        ]
-    },
+    // {
+    //     path: '/user/helper',
+    //     redirect: '/user/helper/main',
+    //     component: Layout,
+    //     meta: {
+    //         type: 'user',
+    //         icon: 'el-icon-printer',
+    //         title: '使用帮助',
+    //         mini: true
+    //     },
+    //     children: [
+    //         {
+    //             path: 'main',
+    //             component: HelperMain,
+    //             meta: { title: '使用帮助' }
+    //         }
+    //     ]
+    // },
+    // {
+    //     path: '/user/readme',
+    //     redirect: '/user/readme/main',
+    //     component: Layout,
+    //     meta: {
+    //         type: 'user',
+    //         icon: 'el-icon-document',
+    //         title: 'README.md'
+    //     },
+    //     children: [
+    //         {
+    //             path: 'main',
+    //             component: ReadmeMain,
+    //             meta: { title: 'README.md' }
+    //         }
+    //     ]
+    // },
     {
         path: '/user/configure',
         redirect: '/user/configure/main',
         component: Layout,
         meta: {
-            type: "user",
+            type: 'user',
             icon: 'el-icon-setting',
             title: '系统配置',
             LoginRequired: true
@@ -177,28 +175,26 @@ export const constantRouterMap = [
         ]
     },
 
-
-
     {
-        path: "/404",
+        path: '/404',
         component: Error404
     },
     {
         path: '/',
-        redirect: '/user/new',
+        redirect: '/user/new'
     },
     {
-        path: "*",
-        redirect: "/404"
+        path: '*',
+        redirect: '/404'
     },
 
-    //mobile
+    // mobile
     {
         path: '/mobile/user/blog',
         redirect: '/mobile/user/blog/main',
         component: MobileLayout,
         meta: {
-            type: "mobile",
+            type: 'mobile',
             icon: 'edit',
             title: '博客'
         },
@@ -225,7 +221,7 @@ export const constantRouterMap = [
         redirect: '/mobile/user/project/main',
         component: MobileLayout,
         meta: {
-            type: "mobile",
+            type: 'mobile',
             icon: 'like-o',
             title: '项目'
         },
@@ -252,7 +248,7 @@ export const constantRouterMap = [
         redirect: '/mobile/user/self/main',
         component: MobileLayout,
         meta: {
-            type: "mobile",
+            type: 'mobile',
             icon: 'contact',
             title: '个人'
         },
@@ -266,11 +262,8 @@ export const constantRouterMap = [
             }
         ]
 
-    },
+    }
 ]
-
-
-
 
 const router = new Router({
     routes: constantRouterMap,
@@ -285,7 +278,5 @@ router.beforeEach((to, from, next) => {
     Vue.prototype.$setTitle(to.meta.title)
     next()
 })
-
-
 
 export default router

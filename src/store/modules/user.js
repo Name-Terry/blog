@@ -1,6 +1,5 @@
 import UserApi from '@/api/user'
 
-
 const user = {
     state: {
         avatarUrl: null,
@@ -34,7 +33,7 @@ const user = {
 
     actions: {
         GetInfo({ commit }) {
-            UserApi.getInfo().then((response) => {
+            UserApi.getInfo().then(response => {
                 let result = response.data
                 commit('SET_AVATAR_URL', result['avatar_url'])
                 commit('SET_NAME', result['name'])
