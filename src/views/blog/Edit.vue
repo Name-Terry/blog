@@ -9,7 +9,8 @@
                     <el-input v-model="form.description" type="textarea"/>
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
-                    <mavon-editor ref="md" v-model="form.content" :subfield="false" :toolbars="mavonEditorToolbars" style="max-height: 500px" @imgAdd="imgAdd"/>
+                    <el-button @click="dialogVisible = true">打开编辑器</el-button>
+                    <mavon-editor ref="md" v-model="form.content" :ishljs="true" :subfield="false" :toolbars="mavonEditorToolbars" default-open="preview" style="min-height: 600px" @imgAdd="imgAdd" />
                 </el-form-item>
                 <el-form-item>
                     <el-button :loading="submitButton.loading" :disabled="submitButton.disabled" type="primary" @click="onSubmit">修改</el-button>
@@ -18,6 +19,13 @@
             </el-form>
         </el-card>
         <token-dialog ref="tokenDialog"/>
+        <el-dialog :visible.sync="dialogVisible" :title="form.title" :fullscreen="true" class="editCard" width="100%">
+            <mavon-editor ref="md" v-model="form.content" :subfield="true" :tab-size="4" :box-shadow="true" :ishljs="true" :toolbars="mavonEditorToolbars" style="min-height: 600px" code-style="atelier-seaside-light" @imgAdd="imgAdd" />
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">完 成</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -36,6 +44,7 @@ export default {
                 description: '',
                 content: ''
             },
+            dialogVisible: false,
             ruleValidate: {
                 title: [
                     { required: true, message: '请输入标题', trigger: 'blur' },

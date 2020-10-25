@@ -1,3 +1,10 @@
+/*
+ * @Author: trry
+ * @Date: 2020-10-22 15:41:17
+ * @LastEditors: trry
+ * @LastEditTime: 2020-10-25 13:06:16
+ * @Description: file content
+ */
 import Vue from 'vue'
 import App from './App'
 import util from './utils/util'
@@ -6,6 +13,11 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import 'mavon-editor/dist/markdown/github-markdown.min.css'
 import store from './store'
+
+// mackdown 编辑器
+// 全局注册
+// import with ES6
+import 'mavon-editor/dist/css/index.css'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -17,29 +29,29 @@ Vue.use(Vant)
 Vue.use(ElementUI)
 Vue.use(mavonEditor)
 
-Vue.prototype.$markdown = function (value) {
+Vue.prototype.$markdown = function(value) {
     return mavonEditor.markdownIt.render(value)
 }
 
-Vue.prototype.$reload = function (context) {
+Vue.prototype.$reload = function(context) {
     let NewPage = '/empty'
     context.$router.push(NewPage)
     context.$nextTick(() => (context.$router.go(-1)))
 }
 
-Vue.prototype.$setTitle = function (title) {
+Vue.prototype.$setTitle = function(title) {
     if (title) {
-        document.title = store.state.configuration.htmlTitle + " - " + title
+        document.title = store.state.configuration.htmlTitle + ' - ' + title
     } else {
         document.title = store.state.configuration.htmlTitle
     }
 }
-Vue.prototype.$share = function (message) {
+Vue.prototype.$share = function(message) {
     if (!message) {
         message = window.location
     } else {
-        let arr = (window.location + "").split("#")
-        message = arr[0] + "#" + message
+        let arr = (window.location + '').split('#')
+        message = arr[0] + '#' + message
     }
     if (util.copy(message)) {
         Vue.prototype.$confirm('链接已复制,去分享给好友吧!!', '分享', {
@@ -56,12 +68,12 @@ Vue.prototype.$share = function (message) {
     }
 }
 
-Vue.prototype.$mobileShare = function (message) {
+Vue.prototype.$mobileShare = function(message) {
     if (!message) {
         message = window.location
     } else {
-        let arr = (window.location + "").split("#")
-        message = arr[0] + "#" + message
+        let arr = (window.location + '').split('#')
+        message = arr[0] + '#' + message
     }
     if (util.copy(message)) {
         Vue.prototype.$dialog.alert({
@@ -75,8 +87,6 @@ Vue.prototype.$mobileShare = function (message) {
         })
     }
 }
-
-
 
 Vue.prototype.$util = util
 

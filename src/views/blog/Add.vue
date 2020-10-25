@@ -3,20 +3,14 @@
         <el-card shadow="never" style="margin-bottom: 20px">
             <el-form ref="form" :model="form" :rules="ruleValidate" label-width="80px">
                 <el-form-item label="标题" prop="title">
-                    <el-input v-model="form.title"/>
+                    <el-input v-model="form.title" />
                 </el-form-item>
                 <el-form-item label="简要说明" prop="description">
-                    <el-input v-model="form.description" type="textarea"/>
+                    <el-input v-model="form.description" type="textarea" />
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
-                    <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-                        <el-tab-pane label="mackdown" name="first">配置管理</el-tab-pane>
-                        <el-tab-pane label="富文本编辑器" name="second">
-                            <mavon-editor ref="md" v-model="form.content" :subfield="false" :toolbars="mavonEditorToolbars" style="max-height: 500px" @imgAdd="imgAdd"
-                            />
-                        </el-tab-pane>
-                    </el-tabs>
-                    
+                    <el-button @click="dialogVisible = true">打开编辑器</el-button>
+                    <mavon-editor ref="md" v-model="form.content" :ishljs="true" :subfield="false" :toolbars="mavonEditorToolbars" default-open="preview" style="min-height: 600px" @imgAdd="imgAdd" />
                 </el-form-item>
                 <el-form-item>
                     <el-button :loading="submitButton.loading" :disabled="submitButton.disabled" type="primary" @click="onSubmit">发表</el-button>
@@ -24,7 +18,14 @@
                 </el-form-item>
             </el-form>
         </el-card>
-        <token-dialog ref="tokenDialog"/>
+        <token-dialog ref="tokenDialog" />
+        <el-dialog :visible.sync="dialogVisible" :title="form.title" :fullscreen="true" class="editCard" width="100%">
+            <mavon-editor ref="md" v-model="form.content" :subfield="true" :tab-size="4" :box-shadow="true" :ishljs="true" :toolbars="mavonEditorToolbars" style="min-height: 600px" code-style="atelier-seaside-light" @imgAdd="imgAdd" />
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">完 成</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -42,7 +43,7 @@ export default {
                 description: '',
                 content: ''
             },
-            activeName: 'first',
+            dialogVisible: false,
             ruleValidate: {
                 title: [
                     { required: true, message: '请输入标题', trigger: 'blur' },
@@ -129,7 +130,6 @@ export default {
                     this.submitButton.disabled = true
                     GistApi.create(this.form).then(response => {
                         let result = response.data
-                        // console.log(JSON.stringify(result))
                         this.$message({
                             message: '发表成功',
                             type: 'success'

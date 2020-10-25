@@ -160,10 +160,10 @@ export default {
         this.$nextTick(() => {
             setInterval(this.listenMusic, 1000)
         })
-        let width = window.innerWidth
+        let width = document.body.offsetWidth
         for (let i = 0; i < 12; i++) {
             let temp = {}
-            let left = this.$util.randomInt(10, width - 310)
+            let left = this.$util.randomInt(10, width - 320)
             if (left > width / 2 - 150) {
                 left += 300
             }
@@ -266,6 +266,7 @@ export default {
         color: #fff;
         text-align: center;
         background-color: #159957;
+        box-sizing: border-box;
         background-image: linear-gradient(120deg, #155799, #159957);
     }
 

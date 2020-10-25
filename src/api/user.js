@@ -2,32 +2,32 @@ import request from '@/utils/request'
 import store from '../store/index'
 
 export default {
-    verifyToken: function (token) {
+    verifyToken: function(token) {
         return request({
             url: '/user?access_token=' + token
         })
     },
-    getInfo: function () {
+    getInfo: function() {
         let githubUsername = store.state.configuration.githubUsername
         return request({
             url: '/users/' + githubUsername
         })
     },
-    followers: function (query) {
+    followers: function(query) {
         let githubUsername = store.state.configuration.githubUsername
         return request({
             url: `/users/${githubUsername}/followers?page=${query.page}&per_page=${query.pageSize}`
         })
     },
-    following: function (query) {
+    following: function(query) {
         let githubUsername = store.state.configuration.githubUsername
         return request({
             url: `/users/${githubUsername}/following?page=${query.page}&per_page=${query.pageSize}`
         })
     },
-    info:function (githubUsername) {
+    info: function(githubUsername) {
         return request({
             url: `/users/${githubUsername}`
         })
-    },
+    }
 }

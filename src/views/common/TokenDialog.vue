@@ -1,12 +1,12 @@
 <template>
     <div>
-        <el-dialog title="绑定Token" :visible.sync="show" width="500px">
-            <el-form :model="tokenForm" ref="tokenForm" label-width="100px">
+        <el-dialog :visible.sync="show" title="绑定Token" width="500px">
+            <el-form ref="tokenForm" :model="tokenForm" label-width="100px">
                 <el-form-item label="GitHub">
-                    <el-tag>{{githubUsername}}</el-tag>
+                    <el-tag>{{ githubUsername }}</el-tag>
                 </el-form-item>
-                <el-form-item prop="token" label="Token" :rules="[{ required: true, message: '请输入accessToken', trigger: 'blur' }]">
-                    <el-input v-model="tokenForm.token" placeholder="请保管好Token"></el-input>
+                <el-form-item :rules="[{ required: true, message: '请输入accessToken', trigger: 'blur' }]" prop="token" label="Token">
+                    <el-input v-model="tokenForm.token" placeholder="请保管好Token"/>
                 </el-form-item>
             </el-form>
 
@@ -19,39 +19,39 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
-    export default {
-        data() {
-            return {
-                show: false,
-                handleClose: null,
-                tokenForm: {
-                    token: ""
-                }
-            }
-        },
-        computed: {
-            ...mapGetters([
-                'githubUsername'
-            ])
-        },
-        methods: {
-            open(handleClose) {
-                this.handleClose = handleClose
-                this.show = true
-            },
-            onSubmit() {
-                this.$refs["tokenForm"].validate((valid) => {
-                    if (valid) {
-                        this.$store.dispatch("Authentication", this.tokenForm.token)
-                        if (typeof this.handleClose == "function") {
-                            this.handleClose()
-                        }
-
-                    }
-                })
-                this.show = false
+import { mapGetters } from 'vuex'
+export default {
+    data() {
+        return {
+            show: false,
+            handleClose: null,
+            tokenForm: {
+                token: ''
             }
         }
+    },
+    computed: {
+        ...mapGetters([
+            'githubUsername'
+        ])
+    },
+    methods: {
+        open(handleClose) {
+            this.handleClose = handleClose
+            this.show = true
+        },
+        onSubmit() {
+            this.$refs['tokenForm'].validate(valid => {
+                if (valid) {
+                    this.$store.dispatch('Authentication', this.tokenForm.token)
+                    if (typeof this.handleClose == 'function') {
+                        this.handleClose()
+                    }
+
+                }
+            })
+            this.show = false
+        }
     }
+}
 </script>

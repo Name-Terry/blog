@@ -22,6 +22,7 @@ const token = {
 
     actions: {
         Authentication({ commit }, accessToken) {
+            
             UserApi.verifyToken(accessToken).then(response => {
                 let result = response.data
                 let githubUsername = store.state.configuration.githubUsername
