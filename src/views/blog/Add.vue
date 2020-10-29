@@ -9,8 +9,8 @@
                     <el-input v-model="form.description" type="textarea" />
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
-                    <el-button @click="dialogVisible = true">打开编辑器</el-button>
-                    <mavon-editor ref="md" v-model="form.content" :ishljs="true" :subfield="false" :toolbars="mavonEditorToolbars" default-open="preview" style="min-height: 600px" @imgAdd="imgAdd" />
+                    <el-button @click="dialogVisible = true">全屏</el-button>
+                    <mavon-editor ref="md" v-model="form.content" :ishljs="true" :subfield="false" :toolbars="mavonEditorToolbars" default-open="preview" style="min-height: 600px" @click="dialogVisible = true" @imgAdd="imgAdd" />
                 </el-form-item>
                 <el-form-item>
                     <el-button :loading="submitButton.loading" :disabled="submitButton.disabled" type="primary" @click="onSubmit">发表</el-button>
