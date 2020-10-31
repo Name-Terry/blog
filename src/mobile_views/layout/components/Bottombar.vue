@@ -1,40 +1,47 @@
+<!--
+ * @Author: trry
+ * @Date: 2020-10-22 15:41:17
+ * @LastEditors: trry
+ * @LastEditTime: 2020-10-29 13:54:00
+ * @Description: file content
+-->
 <template>
     <div>
         <van-tabbar v-model="active">
             <van-tabbar-item v-for="item in constantRouterMap" v-if="item.meta&&item.meta.type=='mobile'&&(token||!item.meta.LoginRequired)&&(!mini||!item.meta.mini)"
-                :key="item.path" :to="item.path" :icon="item.meta.icon">
-                {{item.meta.title}}
+                             :key="item.path" :to="item.path" :icon="item.meta.icon">
+                {{ item.meta.title }}
             </van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
-    import { constantRouterMap } from '@/router'
-    export default {
-        data() {
-            return {
-                constantRouterMap,
-                active: 0,
-            }
-        },
-        computed: {
-            ...mapGetters([
-                'token',
-                'githubUsername',
-                'mini'
-            ])
-        },
-        watch: {
-            'active': function () {
-                this.$router.push(this.active)
-            }
-        },
-        methods: {
-            onSelect() {
-                this.$router.push(this.active)
-            }
+import { mapGetters } from 'vuex'
+import { constantRouterMap } from '@/router'
+export default {
+    data() {
+        return {
+            constantRouterMap,
+            active: 0
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'token',
+            'githubUsername',
+            'mini'
+        ])
+    },
+    watch: {
+        'active': function() {
+            this.$router.push(this.active)
+        }
+    },
+    methods: {
+        onSelect() {
+            this.$router.push(this.active)
         }
     }
+}
 </script>
